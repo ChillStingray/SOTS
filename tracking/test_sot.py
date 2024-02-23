@@ -49,6 +49,10 @@ def track(inputs):
 
     image_files, gt = video_info['image_files'], video_info['gt']
 
+
+    # print to terminal
+    print("path to image files: ", image_files[0], "--------------------------------------------------------------")
+
     for f, image_file in enumerate(image_files):
         im = cv2.imread(image_file)
         if len(im.shape) == 2: im = cv2.cvtColor(im, cv2.COLOR_GRAY2BGR)

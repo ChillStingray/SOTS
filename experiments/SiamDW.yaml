@@ -88,7 +88,7 @@ TRAIN:
 
 TEST:    # TEST model is same as TRAIN.MODEL
   ISTRUE: False  # whether to test
-  THREADS: 16   # multi threads test
+  THREADS: 10   # multi threads test
   DATA: 'TRACKINGNET'
   START_EPOCH: 5
   END_EPOCH: 20
