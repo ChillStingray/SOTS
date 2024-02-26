@@ -53,9 +53,9 @@ class eval_sot():
         for i in tqdm(range(n_seq)):
             seq = seqs[i]
             if seq in ['advSamp_Baseball_game_002-Done', 'advSamp_monitor_bikeyellow']:  # TNL2K wrong annotations (first version)
-                gt_rect = np.array(annos[seq]['gt_rect']).astype(np.float)[:-1, :]
+                gt_rect = np.array(annos[seq]['gt_rect']).astype(float)[:-1, :]
             else:
-                gt_rect = np.array(annos[seq]['gt_rect']).astype(np.float)
+                gt_rect = np.array(annos[seq]['gt_rect']).astype(float)
 
             gt_center = self.convert_bb_to_center(gt_rect)
 
@@ -153,7 +153,7 @@ class eval_sot():
             result_path = join(arch, seq + '.txt')
         else:
             result_path = join(arch, seq, seq + '.txt')
-        temp = np.loadtxt(result_path, delimiter=',').astype(np.float)
+        temp = np.loadtxt(result_path, delimiter=',').astype(float)
         return np.array(temp)
 
 
@@ -162,7 +162,7 @@ class eval_sot():
         parser result file in .txt format
         '''
         result_path = join(result_path, seq + '.txt')
-        temp = np.loadtxt(result_path, delimiter=',').astype(np.float)
+        temp = np.loadtxt(result_path, delimiter=',').astype(float)
         return np.array(temp)
 
     def convert_bb_to_center(self, bboxes):
@@ -186,5 +186,4 @@ if __name__ == "__main__":
     start = int(sys.argv[4])
     end = int(sys.argv[5])
     evaler.run(dataset, result_path, tracker_reg, start, end)
-
 

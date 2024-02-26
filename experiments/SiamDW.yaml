@@ -1,7 +1,7 @@
 COMMON:
   LOG_DIR: 'logs'   # log file
   CHECKPOINT_DIR: 'snapshot'   # checkpoint file
-  GPUS: '0,1'
+  GPUS: '0'
 
 MODEL:
   NAME: 'SiamDW'
@@ -17,7 +17,7 @@ MODEL:
     REG_LOSS: None
 
 TRAIN:
-  ISTRUE: False   # whether to train
+  ISTRUE: True   # whether to train
   WORKERS: 8
   START_EPOCH: 0
   END_EPOCH: 20
@@ -41,7 +41,7 @@ TRAIN:
     LOCAL_RANK: 0
 
   DATASET:
-    WHICH_USE: ['GOT10K']
+    WHICH_USE: ['COCO']
     AUG:
       EXEMPLAR:
         SHIFT: 4

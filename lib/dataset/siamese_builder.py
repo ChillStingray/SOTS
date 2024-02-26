@@ -263,7 +263,7 @@ class SiameseDataset(Dataset):
         c = -a * bbox[0]
         d = -b * bbox[1]
         mapping = np.array([[a, 0, c],
-                            [0, b, d]]).astype(np.float)
+                            [0, b, d]]).astype(float)
         crop = cv2.warpAffine(image, mapping, (out_sz, out_sz), borderMode=cv2.BORDER_CONSTANT, borderValue=padding)
         return crop
 
@@ -480,7 +480,7 @@ class SiameseDataset(Dataset):
         box = np.array([box.x1, box.y1, box.x2, box.y2]).reshape(1, 4)
         box_rep = box.repeat(96, axis=0)
 
-        add = np.array([4, 8, 12, 16]).astype(np.float)
+        add = np.array([4, 8, 12, 16]).astype(float)
         minus = -1 * add
         add2 = add.reshape(4, 1).repeat(2, axis=-1)
         minus2 = minus.reshape(4, 1).repeat(2, axis=1)
