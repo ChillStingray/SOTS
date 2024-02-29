@@ -55,10 +55,16 @@ def siamese_train(inputs):
         jitterBox = batchinfo['jitterBox'].float().to(device) if 'jitterBox' in batch_keys else None
         jitter_ious = batchinfo['jitter_ious'].float().to(device) if 'jitter_ious' in batch_keys else None
 
-        model_inputs = {'template': template, 'search': search, 'cls_label': cls_label, 'reg_label': reg_label,
+        if cfg.MODEL.NAME in ['SiamDW']:
+            model_inputs = {'template': template, 'search': search, 'cls_label': cls_label, 'reg_label': reg_label,
                         'reg_weight': reg_weight, 'template_bbox': template_bbox, 'search_bbox': search_bbox,
                         'template_mask': template_mask, 'jitterBox': jitterBox, 'jitter_ious': jitter_ious,
-                        'nas_list_z': inputs['nas_list_z'], 'nas_list_x': inputs['nas_list_x'],
+                        'phrase_ids': batchinfo['phrase_ids'], 'phrase_attnmask': batchinfo['phrase_attnmask']}
+        else:
+            model_inputs = {'template': template, 'search': search, 'cls_label': cls_label, 'reg_label': reg_label,
+                        'reg_weight': reg_weight, 'template_bbox': template_bbox, 'search_bbox': search_bbox,
+                        'template_mask': template_mask, 'jitterBox': jitterBox, 'jitter_ious': jitter_ious,
+                        'nas_list_z': inputs['nas_list_z'], 'nas_list_x': inputs['nas_list_x'],                 #! current error location
                         'nas_list_nlp': inputs['nas_list_nlp'],
                         'phrase_ids': batchinfo['phrase_ids'], 'phrase_attnmask': batchinfo['phrase_attnmask']}
 

@@ -79,7 +79,7 @@ def epoch_train(config, logger, writer_dict, wandb_instance=None, args=None):
         optimizer, lr_scheduler = learner.build_siamese_opt_lr(config, dist_model.module, config.TRAIN.START_EPOCH)
     else:
         if config.MODEL.NAME in ['SiamDW', 'SiamFC']:
-            trainable_params = loader.check_trainable(model, logger, print=False)
+            trainable_params = loader.check_trainable(model, logger, False)
             optimizer, lr_scheduler = learner.build_simple_siamese_opt_lr(config, trainable_params)
         else:
             optimizer, lr_scheduler = learner.build_siamese_opt_lr(config, model, 0)  # resume wrong (last line)

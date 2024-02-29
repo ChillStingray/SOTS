@@ -11,11 +11,11 @@
 #SBATCH -p gpu
  
 # Change directory to the temporary directory on the compute node
-cd /mnt/scratch/users/dc2020/SOTS
+cd /mnt/scratch/users/dc2020/SOTS/
  
 flight start
  
 # Activate Gridware
-flight env activate conda@SOTS
+flight env activate conda@gpu
  
 python tracking/train_sot.py --cfg experiments/SiamDW.yaml

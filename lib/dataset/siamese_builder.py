@@ -156,7 +156,9 @@ class SiameseDataset(Dataset):
             template_mask, jitterBox, jitter_ious = None, None, None
 
         template, search = map(lambda x: np.transpose(x, (2, 0, 1)).astype(np.float32), [template, search])
-
+        nlp_len = 50                                                #! my fix (the below 3 lines)
+        phrase_ids = torch.zeros(nlp_len, dtype=torch.long)
+        phrase_attnmask = torch.zeros(nlp_len, dtype=torch.long)
         if self.nasnlp:
             nlp_len = 50
             if phrase == [] or phrase is None:
