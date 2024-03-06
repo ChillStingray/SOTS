@@ -1,6 +1,6 @@
 import numpy as np
 from numba import jit
-from . import region
+#from . import region
 
 def calculate_failures(trajectory):
     """ Calculate number of failures
@@ -170,3 +170,4 @@ def calculate_expected_overlap(fragments, fweights):
             expected_overlaps[i] = np.sum(seq_mean *
                 fweights[mask]) / np.sum(fweights[mask])
     return expected_overlaps
+

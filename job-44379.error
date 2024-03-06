@@ -1,0 +1,7 @@
+2024-03-06 11:54:52 [DEBUG]: matplotlib data path: /users/dc2020/.local/share/flight/env/conda+gpu/lib/python3.11/site-packages/matplotlib/mpl-data
+2024-03-06 11:54:52 [DEBUG]: CONFIGDIR=/users/dc2020/.config/matplotlib
+2024-03-06 11:54:52 [DEBUG]: interactive is False
+2024-03-06 11:54:52 [DEBUG]: platform is linux
+2024-03-06 11:54:52 [DEBUG]: CACHEDIR=/users/dc2020/.cache/matplotlib
+2024-03-06 11:54:52 [DEBUG]: Using fontManager instance from /users/dc2020/.cache/matplotlib/fontlist-v330.json
+2024-03-06 11:54:55.037 | INFO     | utils.model_helper:check_keys:179 - missing keys:[]

@@ -1,0 +1,339 @@
+model backbone: ResNet22W
+model neck: None
+model head: SiamFCCorr
+model build done!
+SiamInference(
+  (backbone): ResNet22W(
+    (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+    (maxpool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (layer1): Sequential(
+      (0): Bottleneck_BIG_CI(
+        (conv1): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): Bottleneck_BIG_CI(
+        (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck_BIG_CI(
+        (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (layer2): Sequential(
+      (0): Bottleneck_BIG_CI(
+        (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (2): Bottleneck_BIG_CI(
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (3): Bottleneck_BIG_CI(
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (4): Bottleneck_BIG_CI(
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+  )
+  (head): SiamFCCorr()
+)
+===> init Siamese <====
+load pretrained model from snapshot/checkpoint_e20.pth
+remove prefix 'module.'
+change features.features to backbone
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/group1/001333.jpg --------------------------------------------------------------
+Video: group1_2     Time: 9.4s Speed: 126.0fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car10/000001.jpg --------------------------------------------------------------
+Video: car10        Time: 9.6s Speed: 145.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person8/000001.jpg --------------------------------------------------------------
+Video: person8_1    Time: 9.0s Speed: 118.7fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person12/000601.jpg --------------------------------------------------------------
+Video: person12_2   Time: 7.0s Speed: 145.9fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car3_s/000001.jpg --------------------------------------------------------------
+Video: car3_s       Time: 10.9s Speed: 119.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car1/000001.jpg --------------------------------------------------------------
+Video: car1_1       Time: 5.2s Speed: 145.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/group3/000001.jpg --------------------------------------------------------------
+Video: group3_1     Time: 11.2s Speed: 139.8fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car11/000001.jpg --------------------------------------------------------------
+Video: car11        Time: 2.4s Speed: 142.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person13/000001.jpg --------------------------------------------------------------
+Video: person13     Time: 6.2s Speed: 141.4fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/group1/002515.jpg --------------------------------------------------------------
+Video: group1_3     Time: 9.7s Speed: 145.7fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person6/000001.jpg --------------------------------------------------------------
+Video: person6      Time: 6.3s Speed: 142.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/group1/000001.jpg --------------------------------------------------------------
+Video: group1_1     Time: 9.3s Speed: 143.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person11/000001.jpg --------------------------------------------------------------
+Video: person11     Time: 5.0s Speed: 145.4fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car13/000001.jpg --------------------------------------------------------------
+Video: car13        Time: 2.8s Speed: 145.7fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person8/001075.jpg --------------------------------------------------------------
+Video: person8_2    Time: 3.6s Speed: 124.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/group3/002827.jpg --------------------------------------------------------------
+Video: group3_3     Time: 10.8s Speed: 142.7fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person12/000001.jpg --------------------------------------------------------------
+Video: person12_1   Time: 4.1s Speed: 145.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car1/001627.jpg --------------------------------------------------------------
+Video: car1_3       Time: 7.5s Speed: 133.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car1/000751.jpg --------------------------------------------------------------
+Video: car1_2       Time: 6.0s Speed: 145.8fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car1_s/000001.jpg --------------------------------------------------------------
+Video: car1_s       Time: 11.9s Speed: 123.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/group3/001567.jpg --------------------------------------------------------------
+Video: group3_2     Time: 9.1s Speed: 138.8fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/wakeboard10/000001.jpg --------------------------------------------------------------
+Video: wakeboard10  Time: 3.2s Speed: 145.1fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car12/000001.jpg --------------------------------------------------------------
+Video: car12        Time: 3.6s Speed: 139.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person10/000001.jpg --------------------------------------------------------------
+Video: person10     Time: 10.1s Speed: 101.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/group1/003925.jpg --------------------------------------------------------------
+Video: group1_4     Time: 6.5s Speed: 145.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person1/000001.jpg --------------------------------------------------------------
+Video: person1      Time: 5.6s Speed: 142.7fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person14/000847.jpg --------------------------------------------------------------
+Video: person14_2   Time: 6.7s Speed: 145.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person14/001813.jpg --------------------------------------------------------------
+Video: person14_3   Time: 7.8s Speed: 143.1fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person15/000001.jpg --------------------------------------------------------------
+Video: person15     Time: 9.2s Speed: 144.7fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car17/000001.jpg --------------------------------------------------------------
+Video: car17        Time: 7.3s Speed: 145.1fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car15/000001.jpg --------------------------------------------------------------
+Video: car15        Time: 3.2s Speed: 145.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person14/000001.jpg --------------------------------------------------------------
+Video: person14_1   Time: 6.1s Speed: 138.8fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/uav8/000001.jpg --------------------------------------------------------------
+Video: uav8         Time: 2.0s Speed: 149.1fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/group3/004369.jpg --------------------------------------------------------------
+Video: group3_4     Time: 8.1s Speed: 143.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person16/000001.jpg --------------------------------------------------------------
+Video: person16     Time: 8.2s Speed: 140.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car14/000001.jpg --------------------------------------------------------------
+Video: car14        Time: 9.2s Speed: 144.4fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person3/000001.jpg --------------------------------------------------------------
+Video: person3      Time: 4.5s Speed: 144.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car3/000001.jpg --------------------------------------------------------------
+Video: car3         Time: 11.8s Speed: 145.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car6/003925.jpg --------------------------------------------------------------
+Video: car6_5       Time: 7.2s Speed: 129.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/wakeboard1/000001.jpg --------------------------------------------------------------
+Video: wakeboard1   Time: 3.1s Speed: 135.4fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/group2/001771.jpg --------------------------------------------------------------
+Video: group2_3     Time: 6.3s Speed: 145.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/group2/000907.jpg --------------------------------------------------------------
+Video: group2_2     Time: 6.0s Speed: 143.6fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car6/002953.jpg --------------------------------------------------------------
+Video: car6_4       Time: 6.8s Speed: 143.0fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car2/000001.jpg --------------------------------------------------------------
+Video: car2         Time: 9.1s Speed: 144.6fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car2_s/000001.jpg --------------------------------------------------------------
+Video: car2_s       Time: 2.3s Speed: 138.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/building4/000001.jpg --------------------------------------------------------------
+Video: building4    Time: 6.0s Speed: 131.6fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/wakeboard2/000001.jpg --------------------------------------------------------------
+Video: wakeboard2   Time: 5.1s Speed: 143.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/group2/000001.jpg --------------------------------------------------------------
+Video: group2_1     Time: 6.8s Speed: 133.4fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/wakeboard3/000001.jpg --------------------------------------------------------------
+Video: wakeboard3   Time: 5.7s Speed: 145.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/building5/000001.jpg --------------------------------------------------------------
+Video: building5    Time: 3.3s Speed: 144.8fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/building1/000001.jpg --------------------------------------------------------------
+Video: building1    Time: 3.2s Speed: 144.4fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car5/000001.jpg --------------------------------------------------------------
+Video: car5         Time: 5.4s Speed: 138.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/wakeboard7/000001.jpg --------------------------------------------------------------
+Video: wakeboard7   Time: 1.4s Speed: 143.6fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car6/001807.jpg --------------------------------------------------------------
+Video: car6_3       Time: 8.4s Speed: 135.9fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car6/000487.jpg --------------------------------------------------------------
+Video: car6_2       Time: 11.7s Speed: 112.9fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/wakeboard6/000001.jpg --------------------------------------------------------------
+Video: wakeboard6   Time: 8.2s Speed: 141.6fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person17/001501.jpg --------------------------------------------------------------
+Video: person17_2   Time: 5.9s Speed: 144.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car4/000001.jpg --------------------------------------------------------------
+Video: car4         Time: 9.6s Speed: 140.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/truck4/000577.jpg --------------------------------------------------------------
+Video: truck4_2     Time: 4.8s Speed: 141.8fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/building2/000001.jpg --------------------------------------------------------------
+Video: building2    Time: 4.2s Speed: 138.6fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/wakeboard4/000001.jpg --------------------------------------------------------------
+Video: wakeboard4   Time: 5.1s Speed: 135.6fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/boat9/000001.jpg --------------------------------------------------------------
+Video: boat9        Time: 9.6s Speed: 145.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car4_s/000001.jpg --------------------------------------------------------------
+Video: car4_s       Time: 6.2s Speed: 134.0fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/boat8/000001.jpg --------------------------------------------------------------
+Video: boat8        Time: 4.7s Speed: 145.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car6/000001.jpg --------------------------------------------------------------
+Video: car6_1       Time: 3.6s Speed: 133.7fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/wakeboard5/000001.jpg --------------------------------------------------------------
+Video: wakeboard5   Time: 12.0s Speed: 139.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person17/000001.jpg --------------------------------------------------------------
+Video: person17_1   Time: 10.4s Speed: 144.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/truck4/000001.jpg --------------------------------------------------------------
+Video: truck4_1     Time: 4.0s Speed: 145.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car7/000001.jpg --------------------------------------------------------------
+Video: car7         Time: 7.2s Speed: 143.8fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/building3/000001.jpg --------------------------------------------------------------
+Video: building3    Time: 5.7s Speed: 144.7fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person19/002791.jpg --------------------------------------------------------------
+Video: person19_3   Time: 11.7s Speed: 133.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person1_s/000001.jpg --------------------------------------------------------------
+Video: person1_s    Time: 11.7s Speed: 136.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/wakeboard8/000001.jpg --------------------------------------------------------------
+Video: wakeboard8   Time: 10.6s Speed: 145.4fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/boat5/000001.jpg --------------------------------------------------------------
+Video: boat5        Time: 3.5s Speed: 143.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/truck1/000001.jpg --------------------------------------------------------------
+Video: truck1       Time: 6.9s Speed: 66.9fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car8/001357.jpg --------------------------------------------------------------
+Video: car8_2       Time: 9.0s Speed: 135.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/boat4/000001.jpg --------------------------------------------------------------
+Video: boat4        Time: 3.9s Speed: 143.1fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/wakeboard9/000001.jpg --------------------------------------------------------------
+Video: wakeboard9   Time: 2.4s Speed: 145.0fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person19/001243.jpg --------------------------------------------------------------
+Video: person19_2   Time: 11.0s Speed: 140.9fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car9/000001.jpg --------------------------------------------------------------
+Video: car9         Time: 15.0s Speed: 125.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/boat6/000001.jpg --------------------------------------------------------------
+Video: boat6        Time: 5.6s Speed: 144.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/truck3/000001.jpg --------------------------------------------------------------
+Video: truck3       Time: 3.7s Speed: 145.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/truck2/000001.jpg --------------------------------------------------------------
+Video: truck2       Time: 2.7s Speed: 144.7fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car8/000001.jpg --------------------------------------------------------------
+Video: car8_1       Time: 11.1s Speed: 122.0fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/boat7/000001.jpg --------------------------------------------------------------
+Video: boat7        Time: 4.2s Speed: 125.8fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person3_s/000001.jpg --------------------------------------------------------------
+Video: person3_s    Time: 3.6s Speed: 138.4fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person19/000001.jpg --------------------------------------------------------------
+Video: person19_1   Time: 10.7s Speed: 116.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/bird1/001573.jpg --------------------------------------------------------------
+Video: bird1_3      Time: 6.0s Speed: 144.8fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/boat3/000001.jpg --------------------------------------------------------------
+Video: boat3        Time: 8.4s Speed: 107.4fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person7/001249.jpg --------------------------------------------------------------
+Video: person7_2    Time: 5.9s Speed: 138.0fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person5/000001.jpg --------------------------------------------------------------
+Video: person5_1    Time: 6.2s Speed: 142.0fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/bike1/000001.jpg --------------------------------------------------------------
+Video: bike1        Time: 24.4s Speed: 126.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/boat2/000001.jpg --------------------------------------------------------------
+Video: boat2        Time: 6.4s Speed: 125.4fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/bird1/000775.jpg --------------------------------------------------------------
+Video: bird1_2      Time: 4.9s Speed: 144.0fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person7/000001.jpg --------------------------------------------------------------
+Video: person7_1    Time: 10.9s Speed: 114.1fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/bike3/000001.jpg --------------------------------------------------------------
+Video: bike3        Time: 3.0s Speed: 145.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person5/000877.jpg --------------------------------------------------------------
+Video: person5_2    Time: 8.5s Speed: 143.9fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/bike2/000001.jpg --------------------------------------------------------------
+Video: bike2        Time: 3.8s Speed: 145.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/boat1/000001.jpg --------------------------------------------------------------
+Video: boat1        Time: 6.8s Speed: 132.0fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/bird1/000001.jpg --------------------------------------------------------------
+Video: bird1_1      Time: 1.8s Speed: 139.0fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/uav5/000001.jpg --------------------------------------------------------------
+Video: uav5         Time: 0.9s Speed: 147.4fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person2_s/000001.jpg --------------------------------------------------------------
+Video: person2_s    Time: 1.9s Speed: 128.7fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person2/001189.jpg --------------------------------------------------------------
+Video: person2_2    Time: 10.3s Speed: 139.5fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/uav4/000001.jpg --------------------------------------------------------------
+Video: uav4         Time: 1.1s Speed: 148.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car18/000001.jpg --------------------------------------------------------------
+Video: car18        Time: 10.3s Speed: 117.1fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person18/000001.jpg --------------------------------------------------------------
+Video: person18     Time: 11.1s Speed: 124.9fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/uav6/000001.jpg --------------------------------------------------------------
+Video: uav6         Time: 0.7s Speed: 148.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person2/000001.jpg --------------------------------------------------------------
+Video: person2_1    Time: 8.3s Speed: 143.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/uav7/000001.jpg --------------------------------------------------------------
+Video: uav7         Time: 2.5s Speed: 149.1fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person21/000001.jpg --------------------------------------------------------------
+Video: person21     Time: 3.3s Speed: 145.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/uav3/000001.jpg --------------------------------------------------------------
+Video: uav3         Time: 1.8s Speed: 148.7fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car16/000415.jpg --------------------------------------------------------------
+Video: car16_2      Time: 11.1s Speed: 142.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/uav1/002473.jpg --------------------------------------------------------------
+Video: uav1_3       Time: 6.7s Speed: 148.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/uav1/001555.jpg --------------------------------------------------------------
+Video: uav1_2       Time: 5.6s Speed: 148.1fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/uav2/000001.jpg --------------------------------------------------------------
+Video: uav2         Time: 0.9s Speed: 148.3fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person4/001501.jpg --------------------------------------------------------------
+Video: person4_2    Time: 9.2s Speed: 135.0fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person20/000001.jpg --------------------------------------------------------------
+Video: person20     Time: 15.9s Speed: 111.9fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person9/000001.jpg --------------------------------------------------------------
+Video: person9      Time: 4.6s Speed: 142.2fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person22/000001.jpg --------------------------------------------------------------
+Video: person22     Time: 1.4s Speed: 144.1fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/car16/000001.jpg --------------------------------------------------------------
+Video: car16_1      Time: 2.9s Speed: 143.4fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/uav1/000001.jpg --------------------------------------------------------------
+Video: uav1_1       Time: 10.6s Speed: 147.1fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person23/000001.jpg --------------------------------------------------------------
+Video: person23     Time: 2.8s Speed: 139.9fps  Lost 0
+path to image files:  /mnt/scratch/users/dc2020/SOTS/lib/dataset/../../dataset/UAV123/data_seq/UAV123/person4/000001.jpg --------------------------------------------------------------
+Video: person4_1    Time: 11.2s Speed: 134.1fps  Lost 0

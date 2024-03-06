@@ -18,4 +18,4 @@ flight start
 # Activate Gridware
 flight env activate conda@gpu
  
-python tracking/train_sot.py --cfg experiments/SiamDW.yaml
+python tracking/test_sot.py --cfg experiments/SiamDW.yaml --resume snapshot/checkpoint_e20.pth --dataset UAV123

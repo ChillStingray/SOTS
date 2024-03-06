@@ -7,7 +7,7 @@ import itertools
 import numpy as np
 
 from colorama import Style, Fore
-from ..utils import calculate_failures, calculate_accuracy
+from ..utils.statistics import calculate_failures, calculate_accuracy
 
 class AccuracyRobustnessBenchmark:
     """
@@ -139,3 +139,4 @@ class AccuracyRobustnessBenchmark:
                 overlaps[video.name] = np.nanmean(overlaps_group, axis=0).tolist()
                 failures[video.name] = num_failures_group
         return overlaps, failures
+
