@@ -7,7 +7,7 @@ def draw_success_precision(success_ret, name, videos, attr, precision_ret=None,
         norm_precision_ret=None, bold_name=None, axis=[0, 1]):
     # success plot
     fig, ax = plt.subplots()
-    ax.grid(b=True)
+    ax.grid()
     ax.set_aspect(1)
     plt.xlabel('Overlap threshold')
     plt.ylabel('Success rate')
@@ -45,7 +45,7 @@ def draw_success_precision(success_ret, name, videos, attr, precision_ret=None,
     if precision_ret:
         # norm precision plot
         fig, ax = plt.subplots()
-        ax.grid(b=True)
+        ax.grid()
         ax.set_aspect(50)
         plt.xlabel('Location error threshold')
         plt.ylabel('Precision')
@@ -83,7 +83,7 @@ def draw_success_precision(success_ret, name, videos, attr, precision_ret=None,
     # norm precision plot
     if norm_precision_ret:
         fig, ax = plt.subplots()
-        ax.grid(b=True)
+        ax.grid()
         plt.xlabel('Location error threshold')
         plt.ylabel('Precision')
         if attr == 'ALL':
