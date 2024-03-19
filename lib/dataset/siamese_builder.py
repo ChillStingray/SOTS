@@ -552,7 +552,9 @@ class subData(object):
         self.num_use = info.USE
         self.root = info.PATH
 
+
         with open(info.ANNOTATION) as fin:
+            print('loading {} dataset...'.format(info.ANNOTATION))
             meta_data = json.load(fin)
             self.labels = self._filter_zero(meta_data)
             self._clean()

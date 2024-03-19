@@ -14,17 +14,31 @@ BCE_TORCH = nn.BCEWithLogitsLoss()
 # modules
 def simple_BCE(pred, label, select):
     '''
-    binary cross-entropy for selected elements (predictions)
+    Focal loss for selected elements (predictions).
+    Applies the focal loss only to the subset of predictions specified by `select`.
     '''
-    if len(select.size()) == 0: return 0
-    pred = torch.index_select(pred, 0, select)
-    label = torch.index_select(label, 0, select)
-    return BCE_TORCH(pred, label)  # the same as tf version
+    alpha=0.25
+    gamma=2.0
+    if len(select.size()) == 0:
+        return 0
+    # Selecting the specific predictions and labels
+    pred_selected = torch.index_select(pred, 0, select)
+    label_selected = torch.index_select(label, 0, select)
+
+    # Calculating BCE loss without reduction
+    bce_loss = F.binary_cross_entropy_with_logits(pred_selected, label_selected, reduction='none')
+    probas = torch.sigmoid(pred_selected)
+    # Modulating factor according to the Focal Loss definition
+    pt = (label_selected * probas) + ((1 - label_selected) * (1 - probas))
+    focal_loss = alpha * (1 - pt) ** gamma * bce_loss
+
+    # Assuming you want to average the loss over the selected elements
+    return focal_loss.mean()
 
 
 def weighted_BCE(pred, label):
     '''
-    weighted binary cross-entropy: 0.5*pos + 0.5*neg
+    Weighted focal loss: Applies Focal Loss individually to the positive and negative examples and averages them.
     '''
     pred = pred.view(-1)
     label = label.view(-1)
@@ -33,7 +47,7 @@ def weighted_BCE(pred, label):
 
     loss_pos = simple_BCE(pred, label, pos)
     loss_neg = simple_BCE(pred, label, neg)
-    return loss_pos * 0.5 + loss_neg * 0.5
+    return (loss_pos + loss_neg) / 2
 
 
 # used in other scripts
@@ -45,6 +59,51 @@ def WBCE(pred, label):
     loss = weighted_BCE(pred, label)
     return loss
 
+#! attempt to create new loss -------------------------------------------------------------------------------------------------------
+
+def simple_focal_loss(pred, label, select, alpha=0.25, gamma=2.0):
+    '''
+    Focal loss for selected elements (predictions).
+    Applies the focal loss only to the subset of predictions specified by `select`.
+    '''
+    if len(select.size()) == 0:
+        return 0
+    # Selecting the specific predictions and labels
+    pred_selected = torch.index_select(pred, 0, select)
+    label_selected = torch.index_select(label, 0, select)
+
+    # Calculating BCE loss without reduction
+    bce_loss = F.binary_cross_entropy_with_logits(pred_selected, label_selected, reduction='none')
+    probas = torch.sigmoid(pred_selected)
+    # Modulating factor according to the Focal Loss definition
+    pt = (label_selected * probas) + ((1 - label_selected) * (1 - probas))
+    focal_loss = alpha * (1 - pt) ** gamma * bce_loss
+
+    # Assuming you want to average the loss over the selected elements
+    return focal_loss.mean()
+
+def weighted_focal_loss(pred, label, alpha=0.25, gamma=2.0):
+    '''
+    Weighted focal loss: Applies Focal Loss individually to the positive and negative examples and averages them.
+    '''
+    pred = pred.view(-1)
+    label = label.view(-1)
+    pos = label.data.eq(1).nonzero(as_tuple=False).squeeze().cuda()
+    neg = label.data.eq(0).nonzero(as_tuple=False).squeeze().cuda()
+
+    loss_pos = simple_focal_loss(pred, label, pos, alpha, gamma)
+    loss_neg = simple_focal_loss(pred, label, neg, alpha, gamma)
+    return (loss_pos + loss_neg) / 2
+
+def WFL(pred, label, alpha=0.25, gamma=2.0):
+    '''
+    Weighted focal loss: Applies Focal Loss individually to the positive and negative examples and averages them.
+    used in SiamFC, SiamDW, Ocean, AutoMatch
+    '''
+    loss = weighted_focal_loss(pred, label, alpha, gamma)
+    return loss
+
+#! ------------------------------------------------------------------------------------------------------------------------------
 
 def WBCE_ADDPOS(pred, label, jitter, jitter_label):
     '''

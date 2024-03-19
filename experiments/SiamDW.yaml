@@ -1,7 +1,7 @@
-OMMON:
+COMMON:
   LOG_DIR: 'logs'   # log file
   CHECKPOINT_DIR: 'snapshot'   # checkpoint file
-  GPUS: '0,1'
+  GPUS: '0'
 
 MODEL:
   NAME: 'SiamDW'
@@ -17,7 +17,7 @@ MODEL:
     REG_LOSS: None
 
 TRAIN:
-  ISTRUE: False   # whether to train
+  ISTRUE: True   # whether to train
   WORKERS: 8
   START_EPOCH: 0
   END_EPOCH: 20
@@ -31,7 +31,7 @@ TRAIN:
   LR_END: 0.00001
   MOMENTUM: 0.9
   WEIGHT_DECAY: 0.0001
-  PRINT_FREQ: 10
+  PRINT_FREQ: 100
   UNFIX_EPOCH: None
   CLIP_GRAD: False
   RESUME: False
@@ -41,7 +41,7 @@ TRAIN:
     LOCAL_RANK: 0
 
   DATASET:
-    WHICH_USE: ['GOT10K']
+    WHICH_USE: ['COCO']
     AUG:
       EXEMPLAR:
         SHIFT: 4
@@ -87,13 +87,13 @@ TRAIN:
         USE: 50000
 
 TEST:    # TEST model is same as TRAIN.MODEL
-  ISTRUE: False  # whether to test
-  THREADS: 16   # multi threads test
-  DATA: 'TRACKINGNET'
-  START_EPOCH: 5
+  ISTRUE: True  # whether to test
+  THREADS: 16  # multi threads test
+  DATA: 'OTB2015'
+  START_EPOCH: 10
   END_EPOCH: 20
-  EPOCH_TEST: False   # use default hyper-parameters
-  RESUME: "snapshot/SiamDW.pth"   # if not false, ignore start and end epochs
+  EPOCH_TEST: True   # use default hyper-parameters
+  RESUME: "snapshot/checkpoint_e20.pth"   # if not false, ignore start and end epochs
 
   HYPERS:
     OTB2015:
@@ -138,7 +138,7 @@ TEST:    # TEST model is same as TRAIN.MODEL
       window_influence: 0.292
 TUNE:    # TUNE model is same as TRAIN.MODEL
   ISTRUE: True  # whether to tune
-  DATA: 'UAV123'
+  DATA: 'OTB2015'
   RESUME: 'snapshot/SiamDW.pth'
   TRIAL_PER_GPU: 4
 

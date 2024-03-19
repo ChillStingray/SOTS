@@ -191,21 +191,26 @@ def main():
         'train_global_steps': 0,
     }
 
-    if args.wandb:
-        logger.info('use wandb to watch training')
-        my_hostname = socket.gethostname()
-        my_ip = socket.gethostbyname(my_hostname)
-        logger.info('Hostname: {}'.format(my_hostname))
-        logger.info('IP: {}'.format(my_ip))
-        notes = {my_ip: my_hostname}
-        # pdb.set_trace()
-        wandb_instance = recorder.setup_wandb(config, notes)
-        wandb_context = wandb_instance if wandb_instance is not None else nullcontext()
+    epoch_train(config, logger, writer_dict, None, args)
 
-        with wandb_context:
-            epoch_train(config, logger, writer_dict, wandb_instance, args)
-    else:
-        epoch_train(config, logger, writer_dict, None, args)
+    #if args.wandb:
+       # logger.info('use wandb to watch training')
+       # my_hostname = socket.gethostname()
+       # my_ip = socket.gethostbyname(my_hostname)
+       # logger.info('Hostname: {}'.format(my_hostname))
+       # logger.info('IP: {}'.format(my_ip))
+       # notes = {my_ip: my_hostname}
+       # # pdb.set_trace()
+       # wandb_instance = recorder.setup_wandb(config, notes)
+       # wandb_context = wandb_instance if wandb_instance is not None else nullcontext()
+
+        #with wandb_context:
+         #   epoch_train(config, logger, writer_dict, wandb_instance, args)
+    #else:
+      #  epoch_train(config, logger, writer_dict, None, args)
+
+    #if config.MODEL.NAME in ['SiamDW']:
+       # print('=======================================> loss function: {}'.format(config.MODEL.LOSS.NAME))
 
 
 if __name__ == '__main__':

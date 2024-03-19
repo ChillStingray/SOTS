@@ -83,16 +83,17 @@ class OTBDataset(Dataset):
     """
     def __init__(self, name, dataset_root, load_img=False):
         super(OTBDataset, self).__init__(name, dataset_root)
-        with open(os.path.join(dataset_root, name+'.json'), 'r') as f:
+        with open(os.path.join(dataset_root, name+'100.json'), 'r') as f:
             meta_data = json.load(f)
 
         # load videos
         pbar = tqdm(meta_data.keys(), desc='loading '+name, ncols=100)
         self.videos = {}
+        dataset_root_hardcoded = '../../../dataset/OTB2015'
         for video in pbar:
             pbar.set_postfix_str(video)
             self.videos[video] = OTBVideo(video,
-                                          dataset_root,
+                                          dataset_root_hardcoded,
                                           meta_data[video]['video_dir'],
                                           meta_data[video]['init_rect'],
                                           meta_data[video]['img_names'],

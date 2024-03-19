@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/mnt/scratch/users/dc2020/SOTS/./tracking/tune_sot.py", line 15, in <module>
-    import ray
-ModuleNotFoundError: No module named 'ray'
